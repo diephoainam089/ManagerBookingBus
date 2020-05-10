@@ -1,0 +1,45 @@
+<div class="sidebar" data-color="purple">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
+    <div class="logo text-center">
+        <a class="navbar-brand" href="/"> <img src="https://storage.googleapis.com/fe-production/icon_vxr_full.svg" alt=""></a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item {{#if dashboard}} active {{/if}} ">
+                <a class="nav-link" href="/">
+                    <i class="fa fa-dashboard"></i>
+                    <p>Statistical management</p>
+                </a>
+            </li>
+            <li class="nav-item {{#if product}} active {{/if}} ">
+                <a class="nav-link" href="/product/productList/1">
+                    <i class="material-icons">content_paste</i>
+                    <p>Trip management</p>
+                </a>
+            </li>
+            <li class="nav-item {{#if person}} active {{/if}} ">
+                <a class="nav-link" href="/user/userList/1">
+                    <i class="fa fa-user"></i>
+                    <p>User Management</p>
+                </a>
+            </li>
+            <li class="nav-item {{#if orders}} active {{/if}} ">
+                <a class="nav-link" href="/order/orderList">
+                    <i class="material-icons">receipt</i>
+                    <p>Order Management</p>
+                </a>
+            </li>
+            <li class="nav-item {{#if coupon}} active {{/if}} ">
+                <a class="nav-link" href="/coupon/couponList/1">
+                    <i class="material-icons">gift</i>
+                    <p>Discount code Management</p>
+                </a>
+            </li>
+            <!-- your sidebar here -->
+        </ul>
+    </div>
+</div>

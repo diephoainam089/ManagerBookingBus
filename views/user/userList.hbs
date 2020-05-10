@@ -1,0 +1,115 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-plain">
+        <div class="card-header card-header-primary text-center">
+          <h4 class="card-title mt-0">User List </h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+
+              <form action="/user/filterEmail" method="post">
+                {{!-- {{#if hasErrors}}
+            <div class="wrap-input100 m-b-36 alert alert-danger">
+              {{#each messages}}
+              <p class="text-danger">{{this}}</p>
+              {{/each}}
+            </div>
+            {{/if}} --}}
+                <div class="row ">
+                  <div class="col-4 form-group">
+                    <input type="text" class="form-control" name="email" id="email"
+                      placeholder="Please input customer email">
+                  </div>
+                  <div class="col-4 form-group">
+                    {{!-- <input type="hidden" name="_csrf" value="{{csrfToken}}" /> --}}
+                    <button type="submit" class="btn btn-primary">Search</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <a href="/user/signup/new" class="btn btn-primary pull-right" type="button">Create User</a>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <th>
+                  No.
+                </th>
+                <th>
+                  User Email (Account)
+                </th>
+                <th>
+                  User Name
+                </th>
+                <th>
+                  Phone Number
+                </th>
+                <th>
+                  Role
+                </th>
+                <th>
+                  Status
+                </th>
+                <th>
+                </th>
+              </thead>
+              <tbody>
+                {{#each users}}
+                <tr>
+                  <td>
+                    {{this.number}}
+                  </td>
+                  <td>
+                    {{this.email}}
+                  </td>
+                  <td>
+                    {{this.fullName}}
+                  </td>
+                  <td>
+                    {{this.phoneNum}}
+                  </td>
+                  <td>
+                    {{this.role}}
+                  </td>
+                  <td>
+                    {{this.status}}
+                  </td>
+                  <td>
+                    <a class="btn btn-success" href="/user/signup/{{this._id}}">Detail</a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <div class="text-center">
+              <nav style=" padding-right: 50px; display: inline-block;">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" style="color:#6cb9f7 " href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" style="color:#6cb9f7 " href="/user/userList/1">1</a></li>
+                  <li class="page-item"><a class="page-link" style="color:#6cb9f7 " href="/user/userList/2">2</a></li>
+                  <li class="page-item"><a class="page-link" style="color:#6cb9f7 " href="/user/userList/3">3</a></li>
+                  <li class="page-item"><a class="page-link" style="color:#6cb9f7 " href="/user/userList/4">4</a></li>
+                  <li class="page-item">
+                    <a class="page-link" style="color:#6cb9f7 " href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

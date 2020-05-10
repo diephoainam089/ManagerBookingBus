@@ -1,0 +1,208 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Upload trip</h4>
+                        <p class="card-category">Product key: {{keyUpdate}}</p>
+                    </div>
+                    <div class="card-body">
+                        {{#if messages}}
+                        <div class="alert alert-warning">
+                            <strong>{{messages}}</strong>
+                        </div>
+                        {{/if}}
+                        {{#if pro}}
+                        <form action="/product/product-upload/{{keyUpdate}}" method="post"
+                            enctype="multipart/form-data">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Departure:</label>
+                                        <input value="{{pro.title}}" id="proname" name="proname" type="text"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Destination:</label>
+                                        <input value="{{pro.to}}" id="destination" name="destination" type="text"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Region:</label>
+                                        <select id="tripGroup" name="tripGroup" class="custom-select" required>
+                                            <option selected value="southern">Southern</option>
+                                            <option value="central">Central</option>
+                                            <option value="northern">Northern</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Trip Price:</label>
+                                        <input value="{{pro.price}}" id="price" name="price" type="number"
+                                            class="form-control" min="0" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Code bus:</label>
+                                        <input value="{{pro.codeBus}}" id="codebus" name="codebus" type="text"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Departure date:</label>
+                                        <input value="{{pro.deparDate}}" id="date" name="date" type="date"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Departure time:</label>
+                                        <input value="{{pro.departTime.hour}}:{{pro.departTime.minute}}" id="time" name="time" type="text"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Trip Image:</label>
+                                    </div>
+                                    <div class="form-control custom-file">
+                                        <input class="custom-file-input" id="imagePath" name="imagePath"
+                                            accept="image/png,image/jpeg" type="file" required />
+                                        <label class="custom-file-label" for="customFile"
+                                            value="{{pro.imagePath}}">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description about product:</label>
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"></label>
+                                            <textarea id="description" name="description" class="form-control"
+                                                rows="5">{{pro.description}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            <a name="" id="" class="btn btn-primary pull-right"
+                                href="/product/productDetail/{{keyUpdate}}" role="button">Back Detail</a>
+                            <div class="clearfix"></div>
+                        </form>
+                        {{else}}
+                        <form enctype="multipart/form-data" action="/product/product-upload/new" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Departure:</label>
+                                        <input id="proname" name="proname" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Destination:</label>
+                                        <input id="destination" name="destination" type="text" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Region:</label>
+                                        <select id="tripGroup" name="tripGroup" class="custom-select" required>
+                                            <option selected value="southern">Southern</option>
+                                            <option value="central">Central</option>
+                                            <option value="northern">Northern</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Trip Price:</label>
+                                        <input id="price" name="price" type="number" class="form-control" min="0"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Code bus:</label>
+                                        <input id="codebus" name="codebus" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Departure date:</label>
+                                        <input id="date" name="date" type="date" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Departure time:</label>
+                                        <input id="time" name="time" type="text"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Trip Image:</label>
+                                    </div>
+                                    <div class="form-control custom-file">
+                                        <input class="custom-file-input" id="imagePath" name="imagePath"
+                                            accept="image/png,image/jpeg" type="file" required />
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                        {{!-- <label class="custom-file-label" for="proImage">Choose file</label> --}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description about trip:</label>
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"></label>
+                                            <textarea id="description" name="description" class="form-control"
+                                                rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            <a name="" id="" class="btn btn-primary pull-right" href="/product/productList/1"
+                                role="button">Back to
+                                List</a>
+                            <div class="clearfix"></div>
+                        </form>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/core/jquery.min.js"></script>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

@@ -1,0 +1,153 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Upload discount code
+                            <a type="button" class="btn btn-primary pull-right" data-toggle="modal"
+                                data-target="#modelId">Upload File</a>
+                        </h4>
+
+                    </div>
+                    <div class="card-body">
+                        {{#if coupons}}
+                        <form action="/coupon/couponUpload/{{coupons._id}}" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Discount code ID:</label>
+                                        <p>{{coupons._id}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Discount code Description:</label>
+                                        <input value="{{coupons.description}}" id="description" name="description"
+                                            type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Discount code value (%):</label>
+                                        <input value="{{coupons.discount}}" id="discount" name="discount" type="number"
+                                            class="form-control" min="1" max="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Status:</label>
+                                        <select selected id="active" name="active" class="form-control">
+                                            <option value="true">Active</option>
+                                            <option value="false">inActive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary pull-right">Upload</button>
+                            <a href="../couponList/1" type="button" class="btn btn-primary pull-right">Back List</a>
+                            <div class="clearfix"></div>
+                        </form>
+                        {{else}}
+                        <form action="/coupon/couponUpload/new" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Discount code Description:</label>
+                                        <input id="description" name="description" type="text" class="form-control"
+                                            placeholder="Example (10 %)" required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Discount code value (%):</label>
+                                        <input id="discount" name="discount" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Status:</label>
+                                        <select selected id="active" name="active" class="form-control">
+                                            <option value="true">Active</option>
+                                            <option value="false">inActive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Discount code number:</label>
+                                        <input id="quantity" name="quantity" type="number" class="form-control" min="1"
+                                            max="500" placeholder="From 1 to 500" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">Upload</button>
+                            <a href="../couponList/1" type="button" class="btn btn-primary pull-right">Back List</a>
+                            <a href="/coupon/download_Template" type="button"
+                                class="btn btn-primary pull-left">Download</a>
+                            <div class="clearfix"></div>
+                        </form>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true"
+    data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload discount code file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" action="/coupon/read_csv" method="post">
+                    <input class="custom-file-input" type="file" id="file" name="file" accept=".csv" required />
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <div class="modal-footer">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">upload file</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/javascripts/core/jquery.min.js"></script>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

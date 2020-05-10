@@ -1,0 +1,221 @@
+<div class="content">
+  <div class="container-fluid"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary row text-center">
+          <div class="col-12">
+            <h4 class="card-title mt-0">Trip Information</h4>
+          </div>
+          {{!-- <div class="col-6">
+            <a href="/product/product-upload/{{proDetail._id}}" type="button" class="btn btn-primary pull-right"><i
+                class="material-icons">edit</i></a>
+          </div> --}}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8" style="padding-left:50px;">
+              <div class="card">
+                <div class="card-header card-header-primary row">
+                  <div class="col-6">
+                    <h4 class="card-title">Trip Detail</h4>
+                  </div>
+                  <div class="col-6">
+                    <a href="/product/product-upload/{{proDetail._id}}" type="button"
+                      class="btn btn-primary pull-right"><i class="material-icons">edit</i></a>
+                  </div>
+
+                </div>
+                <div class="card-body" style="padding-bottom:117px;">
+                  <form>
+                    {{#proDetail}}
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Trip ID:</label>
+                          <p>{{this._id}}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Departure:</label>
+                          <p>{{this.title}}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Destination:</label>
+                          <p>{{this.to}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Region:</label>
+                          <p> {{this.tripGroup}}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Bus:</label>
+                          <p> {{this.codeBus}} - {{this.seats}} seats</p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Trip Rate:</label>
+                          <p>{{this.productRate}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Departure date:</label>
+                          <p>{{this.departDate}}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Departure time:</label>
+                          <p>{{this.departTime.hour}}:{{this.departTime.minute}}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Price:</label>
+                          <p> ${{this.price}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Trip Description:</label>
+                          <p>{{this.description}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    {{/proDetail}}
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-4" style="padding-right:50px;">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group">
+                    <img src="../../images/{{proDetail.imagePath}}"
+                      class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                      alt="Image Product" />
+                  </div>
+                  <h6 class="card-category text-gray text-center">{{proDetail.title}} - {{proDetail.to}}</h6>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div>
+              <legend class="col-form-legend col-sm-1-12">
+                <h2>Ticket List</h2>
+              </legend>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="text-primary">
+                  <th>
+                    No.
+                  </th>
+                  <th>
+                    Order Date
+                  </th>
+                  <th>
+                    Cus Name
+                  </th>
+                  <th>
+                    Cus Phone
+                  </th>
+                  <th>
+                    Cus Address
+                  </th>
+                  <th>
+                    Discount
+                  </th>
+                  <th>
+                    Total Quantity
+                  </th>
+                  <th>
+                    Total Price
+                  </th>
+                  <th>
+                    Status
+                  </th>
+                </thead>
+                <tbody>
+                  {{#each orderDetail}}
+                  <tr>
+                    <td>
+                      {{this.numberOrder}}
+                    </td>
+                    <td>
+                      {{this.orderDate}}
+                    </td>
+                    <td>
+                      {{this.userInfo.name}}
+                    </td>
+                    <td>
+                      {{this.userInfo.phoneNum}}
+                    </td>
+                    <td>
+                      {{this.userInfo.address}}
+                    </td>
+                    <td>
+                      {{this.couponCode.description}}
+                    </td>
+                    <td>
+                      {{this.totalQuantity}}
+                    </td>
+                    <td>
+                      {{this.totalPrice}} USD
+                    </td>
+                    <td>
+                      {{this.status}}
+                    </td>
+                  </tr>
+                  {{/each}}
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td>
+                      <h4 class="">Total:</h4>
+                    </td>
+                    <td>
+                      <h4>{{totalOrderQty}}</h4>
+                    </td>
+                    <td></td>
+                    <td>
+                      <h4>{{totalOrderPrice}} USD</h4>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-11">
+              <a href="/product/productList/1" type="button" class="btn btn-primary btn-round pull-right">Back to list
+                <div class="ripple-container"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

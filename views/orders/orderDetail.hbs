@@ -1,0 +1,162 @@
+<div class="content">
+  <div class="container-fluid"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary row text-center">
+          <div class="col-12">
+            <h4 class="card-title mt-0">Order Information</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8" style="padding-left:50px;">
+              <div class="card">
+                <div class="card-body">
+                  <form action="/order/updateStatus_Order" method="post">
+                    <input class="form-control" id="arrPro" name="arrPro" value="{{arr_proDelet}}" hidden="false" />
+                    {{#orderDetail}}
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Order Date: {{this.orderDate}}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Customer Email: {{this.userInfo.email}}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Customer Name: {{this.userInfo.name}}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-7">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Customer Address: {{this.userInfo.address}}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Phone Number: {{this.userInfo.phoneNum}}</label>
+                        </div>
+                      </div>
+                    </div>
+                    {{#each this.orderList}}
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Departure:
+                            {{this.tripDepart}}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Destination:
+                            {{this.tripDes}}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Departure date:
+                            {{this.departDate}}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Region:
+                            {{this.region}}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Quantity:
+                            {{this.totalQuantity}}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Trip Price:
+                            {{this.proPrice}} USD</label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="row pl-3">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Discount Code: {{this.couponCode._id}}</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Discount (%): {{this.couponCode.description}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pl-3">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Total price: {{this.totalPrice}} USD</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pl-3">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Order status:</label>
+                      <select class="form-control" name="status" id="status">
+                        <option value="{{this.status}}" selected hidden>{{this.status}}</option>
+                        <option value="1">Done</option>
+                        <option value="0">Pending</option>
+                        <option value="-1">Cancel</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button name="" id="" class="btn btn-primary pull-right" role="button">Update</button>
+                </div>
+                {{/orderDetail}}
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {{!-- <div class="col-4 row">
+            {{#each orderDetail.orderList}}
+            <div class="card col-6">
+              <div class="card-body">
+                <div class="form-group">
+                  <img src="../../images/{{this.img}}"
+                    class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                    alt="Image Product" />
+                </div>
+                <h6 class="card-category text-gray text-center">{{this.tripDepart}} - {{this.tripDes}}</h6>
+                <h6 class="card-category text-gray text-center">Region: {{this.region}}</h6>
+              </div>
+            </div>
+            {{/each}}
+          </div> --}}
+
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <a href="/order/orderList" type="button" class="btn btn-primary btn-round pull-right">Back to list
+              <div class="ripple-container"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
