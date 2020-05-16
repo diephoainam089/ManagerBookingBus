@@ -21,7 +21,7 @@
                     <h4 class="card-title">Trip Detail</h4>
                   </div>
                   <div class="col-6">
-                    <a href="/product/product-upload/{{proDetail._id}}" type="button"
+                    <a href="/product/product-upload/{{proDetail._doc._id}}" type="button"
                       class="btn btn-primary pull-right"><i class="material-icons">edit</i></a>
                   </div>
 
@@ -33,19 +33,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Trip ID:</label>
-                          <p>{{this._id}}</p>
+                          <p>{{this._doc._id}}</p>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Departure:</label>
-                          <p>{{this.title}}</p>
+                          <p>{{this._doc.title}}</p>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Destination:</label>
-                          <p>{{this.to}}</p>
+                          <p>{{this._doc.to}}</p>
                         </div>
                       </div>
                     </div>
@@ -53,19 +53,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Region:</label>
-                          <p> {{this.tripGroup}}</p>
+                          <p> {{this._doc.tripGroup}}</p>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Bus:</label>
-                          <p> {{this.codeBus}} - {{this.seats}} seats</p>
+                          <p> {{this._doc.codeBus}} - {{this._doc.seats}} seats</p>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Trip Rate:</label>
-                          <p>{{this.productRate}}</p>
+                          <p>{{this._doc.productRate}}</p>
                         </div>
                       </div>
                     </div>
@@ -73,19 +73,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Departure date:</label>
-                          <p>{{this.departDate}}</p>
+                          <p>{{this._doc.departDate}}</p>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Departure time:</label>
-                          <p>{{this.departTime.hour}}:{{this.departTime.minute}}</p>
+                          <p>{{this._doc.departTime.hour}}:{{this._doc.departTime.minute}}</p>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Price:</label>
-                          <p> ${{this.price}}</p>
+                          <p> ${{this._doc.price}}</p>
                         </div>
                       </div>
                     </div>
@@ -93,11 +93,11 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating">Trip Description:</label>
-                          <p>{{this.description}}</p>
+                          <p>{{this._doc.description}}</p>
                         </div>
                       </div>
                     </div>
-                    {{/proDetail}}
+
                   </form>
                 </div>
               </div>
@@ -106,15 +106,15 @@
               <div class="card">
                 <div class="card-body">
                   <div class="form-group">
-                    <img src="../../images/{{proDetail.imagePath}}"
+                    <img src="../../images/{{this._doc.imagePath}}"
                       class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
                       alt="Image Product" />
                   </div>
-                  <h6 class="card-category text-gray text-center">{{proDetail.title}} - {{proDetail.to}}</h6>
+                  <h6 class="card-category text-gray text-center">{{this._doc.title}} - {{this._doc.to}}</h6>
                 </div>
               </div>
-
             </div>
+            {{/proDetail}}
           </div>
           <div class="container">
             <div>

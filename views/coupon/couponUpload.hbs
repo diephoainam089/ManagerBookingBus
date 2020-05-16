@@ -12,12 +12,12 @@
                     </div>
                     <div class="card-body">
                         {{#if coupons}}
-                        <form action="/coupon/couponUpload/{{coupons._id}}" method="post">
+                        <form action="/coupon/couponUpload/{{coupons._doc._id}}" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Discount code ID:</label>
-                                        <p>{{coupons._id}}</p>
+                                        <p>{{coupons._doc._id}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Discount code Description:</label>
-                                        <input value="{{coupons.description}}" id="description" name="description"
+                                        <input value="{{coupons._doc.description}}" id="description" name="description"
                                             type="text" class="form-control" required>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Discount code value (%):</label>
-                                        <input value="{{coupons.discount}}" id="discount" name="discount" type="number"
+                                        <input value="{{coupons._doc.discount}}" id="discount" name="discount" type="number"
                                             class="form-control" min="1" max="100">
                                     </div>
                                 </div>

@@ -56,19 +56,19 @@
                     {{this.number}}
                   </td>
                   <td>
-                    {{this._id}}
+                    {{this._doc._id}}
                   </td>
                   <td>
-                    {{this.description}}
+                    {{this._doc.description}}
                   </td>
                   <td>
-                    {{this.discount}}
+                    {{this._doc.discount}}
                   </td>
                   <td>
-                    {{this.status}}
+                    {{this._doc.status}}
                   </td>
                   <td>
-                    <a class="btn btn-success" href="/coupon/couponDetail/{{this._id}}">Detail</a>
+                    <a class="btn btn-success" href="/coupon/couponDetail/{{this._doc._id}}">Detail</a>
                   </td>
                 </tr>
                 {{/each}}

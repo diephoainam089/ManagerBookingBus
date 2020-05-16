@@ -21,14 +21,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Departure:</label>
-                                        <input value="{{pro.title}}" id="proname" name="proname" type="text"
+                                        <input value="{{pro._doc.title}}" id="proname" name="proname" type="text"
                                             class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Destination:</label>
-                                        <input value="{{pro.to}}" id="destination" name="destination" type="text"
+                                        <input value="{{pro._doc.to}}" id="destination" name="destination" type="text"
                                             class="form-control" required>
                                     </div>
                                 </div>
@@ -47,14 +47,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Trip Price:</label>
-                                        <input value="{{pro.price}}" id="price" name="price" type="number"
+                                        <input value="{{pro._doc.price}}" id="price" name="price" type="number"
                                             class="form-control" min="0" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Code bus:</label>
-                                        <input value="{{pro.codeBus}}" id="codebus" name="codebus" type="text"
+                                        <input value="{{pro._doc.codeBus}}" id="codebus" name="codebus" type="text"
                                             class="form-control" required>
                                     </div>
                                 </div>
@@ -63,14 +63,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Departure date:</label>
-                                        <input value="{{pro.deparDate}}" id="date" name="date" type="date"
+                                        <input value="{{pro._doc.deparDate}}" id="date" name="date" type="date"
                                             class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Departure time:</label>
-                                        <input value="{{pro.departTime.hour}}:{{pro.departTime.minute}}" id="time" name="time" type="text"
+                                        <input value="{{pro._doc.departTime.hour}}:{{pro._doc.departTime.minute}}" id="time" name="time" type="text"
                                             class="form-control" required>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                         <input class="custom-file-input" id="imagePath" name="imagePath"
                                             accept="image/png,image/jpeg" type="file" required />
                                         <label class="custom-file-label" for="customFile"
-                                            value="{{pro.imagePath}}">Choose file</label>
+                                            value="{{pro._doc.imagePath}}">Choose file</label>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                         <div class="form-group">
                                             <label class="bmd-label-floating"></label>
                                             <textarea id="description" name="description" class="form-control"
-                                                rows="5">{{pro.description}}</textarea>
+                                                rows="5">{{pro._doc.description}}</textarea>
                                         </div>
                                     </div>
                                 </div>

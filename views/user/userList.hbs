@@ -64,22 +64,22 @@
                     {{this.number}}
                   </td>
                   <td>
-                    {{this.email}}
+                    {{this._doc.email}}
                   </td>
                   <td>
-                    {{this.fullName}}
+                    {{this._doc.fullName}}
                   </td>
                   <td>
-                    {{this.phoneNum}}
+                    {{this._doc.phoneNum}}
                   </td>
                   <td>
-                    {{this.role}}
+                    {{this._doc.role}}
                   </td>
                   <td>
-                    {{this.status}}
+                    {{this._doc.status}}
                   </td>
                   <td>
-                    <a class="btn btn-success" href="/user/signup/{{this._id}}">Detail</a>
+                    <a class="btn btn-success" href="/user/signup/{{this._doc._id}}">Detail</a>
                   </td>
                 </tr>
                 {{/each}}

@@ -79,16 +79,16 @@
                   {{this.number}}
                 </td>
                 <td>
-                  {{this.title}}
+                  {{this._doc.title}}
                 </td>
                 <td>
-                  {{this.to}}
+                  {{this._doc.to}}
                 </td>
                 <td>
-                  {{this.price}} USD
+                  {{this._doc.price}} USD
                 </td>
                 <td id="date">
-                  {{this.departDate}}
+                  {{this._doc.departDate}}
                 </td>
                 <td class="text-center">
                   {{this.orderInfo.qty}}
@@ -100,18 +100,18 @@
                   {{this.orderInfo.price}} USD
                 </td>
                 <td class="text-center">
-                  {{this.seats}}/12
+                  {{this._doc.seats}}/12
                 </td>
                 <td>
-                  <a type="button" data-toggle="modal" data-target="#myModal-{{this._id}}"><i
+                  <a type="button" data-toggle="modal" data-target="#myModal-{{this._doc._id}}"><i
                           style="color: #2196f3; font-size: 20px; padding:10px; cursor: pointer" class="fa fa-retweet"></i></a>
                   {{!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal-{{this._id}}"></button> --}}
-                  <a type="button" class="btn btn-success" href="/product/productDetail/{{this._id}}">Detail</a>
+                  <a type="button" class="btn btn-success" href="/product/productDetail/{{this._doc._id}}">Detail</a>
                 </td>
               </tr>
 
               {{!-- modal --}}
-                            <div class="modal fade" id="myModal-{{this._id}}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="myModal-{{this._doc._id}}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content text-center">
@@ -122,11 +122,11 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      This is a trip from <span class="text-danger">{{this.title}}</span> to <span class="text-danger">{{this.to}}</span> on <span class="text-danger">{{this.departDate}}</span>
+                      This is a trip from <span class="text-danger">{{this._doc.title}}</span> to <span class="text-danger">{{this._doc.to}}</span> on <span class="text-danger">{{this._doc.departDate}}</span>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <a type="button" href="/product/resetSeat/{{this._id}}-{{this.pageNumber}}"><i
+                      <a type="button" href="/product/resetSeat/{{this._doc._id}}-{{this._doc.pageNumber}}"><i
                           style="color: #2196f3; font-size: 20px; padding:10px" class="fa fa-retweet"></i></a>
                     </div>
                   </div>
