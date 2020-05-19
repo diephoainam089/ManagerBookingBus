@@ -5,24 +5,25 @@ const multer = require('multer')
 const multipart = require('connect-multiparty')
 var filter = require('../config/filter_Func')
 var check = require('../config/check_valid')
+var {uploadImage} = require('../config/upload_img')
 var totalValues = require('../config/setup_totalValues')
 var { formatDate } = require('../config/formatDate')
 /* GET home page. */
 
 // using upload image
 
-var storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './public/images')
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname)
-  }
-})
+// var storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, './public/images')
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, `${Date.now()}-${file.originalname}`)
+//   }
+// })
 
-const upload = multer({
-  storage: storage
-})
+// const upload = multer({
+//   storage: storage
+// })
 
 router.get('/exportData', (req, res) => {
   Product.find((err, docs) => {
@@ -80,35 +81,69 @@ router.get('/exportData', (req, res) => {
 })
 
 router.post('/filter_Month', async (req, res) => {
-  console.log(req.body.searchMonth)
-  if (req.body.searchMonth == 0) {
-    res.redirect('./productList/1')
-  } else {
-    var filter_month = await filter.filter_month(req.body.searchMonth)
-    var sumQuantity = 0
-    var sumProfit = 0
-    var sumOrder = 0
-    filter_month.forEach(s => {
-      sumQuantity += s.qty
-      sumProfit += s.price
-      sumOrder += s.order
-    })
-    Product.find((err, docs) => {
-      for (var i = 0; i < docs.length; i++) {
-        docs[i].number = i + 1
-        docs[i].orderInfo = filter_month[i]
+  // if (req.body.searchMonth == 0) {
+  //   res.redirect('./productList/1')
+  // } else {
+  var filter_route = await filter.filter_route(
+    req.body.departure,
+    req.body.destination
+  )
+  var departList = []
+  var destinaList = []
+  var sumQuantity = 0
+  var sumProfit = 0
+  var sumOrder = 0
+  filter_route.forEach(s => {
+    sumQuantity += s.qty
+    sumProfit += s.price
+    sumOrder += s.order
+  })
+
+  Product.find(
+    {
+      title: {
+        $regex: req.body.departure,
+        $options: 'i'
+      },
+      to: {
+        $regex: req.body.destination,
+        $options: 'i'
       }
-      res.render('product/productList', {
-        products: docs,
-        product: 'product',
-        sumProfit: sumProfit.toFixed(1),
-        sumQuantity: sumQuantity,
-        sumOrder: sumOrder,
-        sessionUser: req.session.user,
-        notification: req.session.messsages
+    },
+    async (err, docs) => {
+      let data_ = await docs
+      for (var i = 0; i < data_.length; i++) {
+        data_[i].number = i + 1
+        data_[i].orderInfo = filter_route[i]
+      }
+      Product.find(async (err, rs) => {
+        let uniqueDepart = []
+        let uniqueDestina = []
+        for (var i = 0; i < rs.length; i++) {
+          rs[i].number = i + 1
+          rs[i].orderInfo = filter_route[i]
+          await uniqueDepart.push(rs[i].title)
+          await uniqueDestina.push(rs[i].to)
+        }
+
+        departList = Array.from(new Set(uniqueDepart)).sort()
+        destinaList = Array.from(new Set(uniqueDestina)).sort()
+        res.render('product/productList', {
+          products: data_,
+          product: 'product',
+          sumProfit: sumProfit.toFixed(1),
+          sumQuantity: sumQuantity,
+          sumOrder: sumOrder,
+          departures: departList,
+          destinations: destinaList,
+          sessionUser: req.session.user,
+          notification: req.session.messsages
+        })
       })
-    })
-  }
+    }
+  )
+
+  // }
 })
 router.get('/productList/:page', isLoggedIn, async (req, res) => {
   await Product.paginate(
@@ -120,6 +155,8 @@ router.get('/productList/:page', isLoggedIn, async (req, res) => {
     },
     async (err, rs) => {
       // to do view product list
+      var departList = []
+      var destinaList = []
       var docs = rs.docs
       var sumProfit = 0
       var sumQuantity = 0
@@ -157,14 +194,28 @@ router.get('/productList/:page', isLoggedIn, async (req, res) => {
         console.log(docs[i].orderInfo)
       }
 
-      res.render('product/productList', {
-        products: docs,
-        product: 'product',
-        sumProfit: sumProfit.toFixed(1),
-        sumQuantity: sumQuantity,
-        sumOrder: sumOrder,
-        sessionUser: req.session.user,
-        notification: req.session.messsages
+      Product.find(async (err, rs) => {
+        let uniqueDepart = []
+        let uniqueDestina = []
+        for (let i = 0; i < rs.length; i++) {
+          await uniqueDepart.push(rs[i].title)
+          await uniqueDestina.push(rs[i].to)
+        }
+
+        departList = Array.from(new Set(uniqueDepart)).sort()
+        destinaList = Array.from(new Set(uniqueDestina)).sort()
+
+        res.render('product/productList', {
+          products: docs,
+          product: 'product',
+          sumProfit: sumProfit.toFixed(1),
+          sumQuantity: sumQuantity,
+          sumOrder: sumOrder,
+          departures: departList,
+          destinations: destinaList,
+          sessionUser: req.session.user,
+          notification: req.session.messsages
+        })
       })
     }
   )
@@ -225,13 +276,21 @@ router.get('/product-upload/:id', (req, res) => {
 })
 router.post(
   '/product-upload/:id',
-  upload.single('imagePath'),
+  uploadImage('uploadImg'),
   async (req, res) => {
-    var checks = await check.check_valid(req.body.proname)
-    if (checks == false) {
+    var checks = await check.check_valid(req.body.proname, req.body.destination)
+    var checksBus = await check.check_bus(req.body.codebus)
+    console.log(checksBus)
+    console.log(checks)
+    if (checks == false || checksBus == false) {
       await res.render('product/productUpload', {
         keyUpdate: req.params.id,
-        messages: 'The fields have special characters.!',
+        messages:
+          checks == true
+            ? 'Bus code already exists !!'
+            : checksBus == false
+            ? 'Departure, destination and bus code of the trip are invalid !!'
+            : 'Trip contains special characters !!',
         product: 'product',
         sessionUser: req.session.user,
         notification: req.session.messsages

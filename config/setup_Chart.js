@@ -27,7 +27,7 @@ module.exports = {
         var pro = await Product.find(async (err, docs) => {
             await docs.forEach(s => {
                 var obj = {
-                    'name': s.title,
+                    'name': s.title + '-' + s.to + '-' + s.codeBus,
                     'percent': ((s.totalProfit / totalProfit) * 100).toFixed(1)
                 }
                 arr.push(obj)
@@ -39,10 +39,12 @@ module.exports = {
         var arr = []
         var pro = await Product.find(async (err, docs) => {
             await docs.forEach(s => {
+                console.log(s.title)
                 var obj = {
-                    'title': s.title,
+                    'title': s.title + '-' + s.to + '-' + s.codeBus,
                     'values': s.totalProfit
                 }
+
                 arr.push(obj)
             })
         })

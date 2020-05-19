@@ -204,9 +204,9 @@
               {{#each top5_Profit}}
               <tr>
                 <td class="text-center">{{this.number}}</td>
-                <td class="text-center">{{this.title}} - {{this.to}}</td>
-                <td class="text-center">{{this.codeBus}}</td>
-                <td class="text-primary text-center">${{this.totalProfit}}</td>
+                <td class="text-center">{{this._doc.title}} - {{this._doc.to}}</td>
+                <td class="text-center">{{this._doc.codeBus}}</td>
+                <td class="text-primary text-center">${{this._doc.totalProfit}}</td>
               </tr>
               {{/each}}
             </tbody>
@@ -225,14 +225,16 @@
             <thead class="text-primary">
               <th class="text-center">No.</th>
               <th class="text-center">Trip's route</th>
+              <th class="text-center">Trip's bus</th>
               <th class="text-center">Rating Star</th>
             </thead>
             <tbody>
               {{#each top5_rating}}
               <tr>
                 <td class="text-center">{{this.number}}</td>
-                <td class="text-center">{{this.title}}</td>
-                <td class="text-primary text-center">{{this.productRate}} <i class="fa fa-star" aria-hidden="true"></i></td>
+                <td class="text-center">{{this._doc.title}} - {{this._doc.to}}</td>
+                <td class="text-center">{{this._doc.codeBus}}</td>
+                <td class="text-primary text-center">{{this._doc.productRate}} <i class="fa fa-star" aria-hidden="true"></i></td>
               </tr>
               {{/each}}
             </tbody>
@@ -391,7 +393,7 @@
             },
             scaleLabel: {
               display: true,
-              labelString: 'Product Name'
+              labelString: 'Trip route'
             }
           }]
         }
@@ -438,6 +440,7 @@
   var arrTitles_barChart = []
   var barChart_value = []
   arrProfits.forEach(s => { arrTitles_barChart.push(s.title); barChart_value.push(s.values) })
+
   //DrawChart(arrTitles_barChart, barChart_value, 'bar', 'Profit of products', 'proProfit', true)
   Draw_optionChart(arrTitles_barChart, barChart_value, 'bar', 'Profit of products', 'proProfit')
 
