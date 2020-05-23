@@ -191,7 +191,7 @@ router.get('/productList/:page', isLoggedIn, async (req, res) => {
         sumQuantity += quantity
         docs[i].orderInfo = obj
         docs[i].pageNumber = req.params.page
-        console.log(docs[i].orderInfo)
+        console.log(docs[i].pageNumber)
       }
 
       Product.find(async (err, rs) => {

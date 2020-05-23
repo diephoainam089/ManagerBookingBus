@@ -10,7 +10,6 @@ module.exports.uploadImage = type => {
       Trip.find({ imagePath: file.oringinalname }, (err, rs) => {
         check = rs
       })
-      console.log(check)
       if (check === undefined) return cb(null, `${file.originalname}`)
     }
   })

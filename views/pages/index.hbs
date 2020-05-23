@@ -54,39 +54,36 @@
     <div class="row">
       <div class="col-md-3">
               <div class="col-md-12">
-        <div class="card card-chart">
-          <div class="card-body">
-            <h4 class="card-title">Daily Sales</h4>
-            <p class="card-category">
-              <span class="{{dailySales.color}}"><i class="{{dailySales.icon}}"></i> {{dailySales.dailySales}}% </span>
-              increasing.</p>
+        <div class="">
+          <div style="display: flex; font-family: sans-serif; margin-top: 4rem" class="p-2">
+            <h4 class="card-title"><strong>Daily Sales:</strong> <span class="{{dailySales.color}}"><i class="{{dailySales.icon}}"></i> {{dailySales.dailySales}}% </span>
+              increasing. </h4>
           </div>
         </div>
       </div>
       <div class="col-md-12">
-        <div class="card card-stats">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title font-weight-bold text-uppercase" style="color: white">Total orders: {{totalOrder}}</h4>
+        <div class="ml-2">
+          <div class="">
+            <h3 class=""><strong>Total orders:</strong> {{totalOrder}}</h3>
           </div>
         </div>
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="card card-stats">
-          <div class="card-header card-header-primary">
-            <p class="card-category card-title font-weight-bold" style="color: white">Revenue total</p>
-            <h4 class="card-title font-weight-bold text-uppercase">{{totalProfit}} vnd</h4>
+        <div class="ml-2">
+          <div class="">
+            <h3 class=""><strong>Revenue total:</strong> {{totalProfit}} vnd</h3>
           </div>
         </div>
       </div>
       </div>
       <div class="col-md-9">
-        <div class="card card-chart">
+        <div class="">
           <div class="row">
             <div class="col-9">
               <div class="card-header card-header-white">
                 <canvas id="proProfit" height="220"></canvas>
               </div>
-              <div class="card-body">
+              <div style="font-family: sans-serif" class=" text-center">
                 <h4 class="card-title">Profit's chart of trips</h4>
                 <p class="card-category">Summary of profits have been obtained</p>
                 <button type="button" id="saveImg1" class="btn btn-success">Save image</button>
@@ -95,37 +92,37 @@
             <div class="col-md-3">
               <div class="row">
                 <div class="col-md-12">
-                  <div class="card card-stats">
-                    <div class="card-header card-header-primary card-header-icon">
-                      <div class="card-icon">
-                        <p class="card-category text-white">
-                          <h4>Range date</h4>
+                  <div class="text-center pr-2">
+                    <div class="">
+                      <div class="">
+                        <p class="text-white">
+                          <h4><strong>Filter data by date</strong></h4>
                         </p>
                       </div>
                       <form action="/filter_date" method="post">
                         <div class="form-group">
-                          <input type="date" class="form-control" name="start" id="start" placeholder="The start day">
+                          <input type="date" style="border-radius: 5px; width: 100%;" class="" name="start" id="start" placeholder="The start day">
                         </div>
                         <div class="form-group">
-                          <input type="date" class="form-control" name="end" id="end">
+                          <input type="date" style="border-radius: 5px; width: 100%;" name="end" id="end">
                         </div>
-                        <button type="submit" class="btn btn-primary">submit</button>
+                        <button type="submit" class="btn btn-primary">Filter</button>
                       </form>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-12">
-                  <div class="card card-stats">
-                    <div class="card-header card-header-primary card-header-icon">
-                      <div class="card-icon">
-                        <p class="card-category text-white">
-                          <h4>Option Chart</h4>
+                  <div class="text-center pr-2">
+                    <div class="">
+                      <div class="">
+                        <p class="">
+                          <h4><strong>Change chart's type</strong></h4>
                         </p>
                       </div>
 
                       <div class="form-group">
-                        <select class="form-control" name="option_chart" id="option_chart">
-                          <option value="bar">Choose chart's type</option>
+                        <select style="border-radius: 5px; width: 100%; height: 30px" name="option_chart" id="option_chart">
+                          <option value="line">Choose chart's type</option>
                           <option value="bar">Bar chart</option>
                           <option value="line">Line Chart</option>
                           <option value="pie">Pie Chart</option>
@@ -134,7 +131,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <select class="form-control" name="option_value" id="option_value">
+                        <select style="border-radius: 5px; width: 100%; height: 30px" name="option_value" id="option_value">
                           <option value="0">Choose values</option>
                           <option value="1">Total Profit</option>
                           <option value="2">Total Rating</option>
@@ -185,7 +182,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  {{!-- <div class="row">
     <div class="col-lg-6 col-md-6">
       <div class="card">
         <div class="card-header card-header-primary">
@@ -242,7 +239,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
 </div>
@@ -442,14 +439,14 @@
   arrProfits.forEach(s => { arrTitles_barChart.push(s.title); barChart_value.push(s.values) })
 
   //DrawChart(arrTitles_barChart, barChart_value, 'bar', 'Profit of products', 'proProfit', true)
-  Draw_optionChart(arrTitles_barChart, barChart_value, 'bar', 'Profit of products', 'proProfit')
+  Draw_optionChart(arrTitles_barChart, barChart_value, 'line', 'Profit of each trips', 'proProfit')
 
   // set up data for pie chart
   var title = [];
   var percent = [];
   var arrPercent = {{{ arrPercent }}}
   arrPercent.forEach(s => { title.push(s.name); percent.push(s.percent) })
-  DrawChart(title, percent, 'pie', 'Profit percent of products', 'percentChart', false)
+  DrawChart(title, percent, 'pie', 'Profit percent of trips', 'percentChart', false)
 
 
   // line chart
@@ -463,7 +460,7 @@
 
   function downloadImage(chartjs) {
     /* set new title */
-    chartjs.options.title.text = 'Chart for profit of each product';
+    chartjs.options.title.text = 'Chart for profit of each trips';
     chartjs.data.datasets.backgroundColor = '(75, 192, 192, 2)'
     chartjs.update({
       duration: 0

@@ -15,7 +15,7 @@ var orderRouter = require('./routes/order');
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/product')
 var bodyParser = require('body-parser')
-var glosbe_Daily = require('./config/setup_GlosbeDaily')
+var glosbe_Daily = require('./config/DailyRate_Notificattion_Config')
 
 var app = express();
 mongoose.connect('mongodb://localhost:27017/Booking_BusTicket_Project', {

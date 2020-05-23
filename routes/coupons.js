@@ -20,7 +20,7 @@ var upload = multer({ //multer settings
 });
 
 router.get('/download_Template', function (req, res, next) {
-    const file = 'up-download/download_template/template.csv';
+    const file = 'up-download/download_template/discountlist.csv';
     res.download(file); // Set disposition and send it.
 });
 

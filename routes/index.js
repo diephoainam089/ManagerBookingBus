@@ -3,10 +3,10 @@ var router = express.Router();
 var Product = require('../models/product')
 const multer = require('multer');
 const multipart = require('connect-multiparty')
-var chart = require('../config/setup_Chart')
-var glosbe_Daily = require('../config/setup_GlosbeDaily')
+var chart = require('../config/chartConfig')
+var glosbe_Daily = require('../config/DailyRate_Notificattion_Config')
 var filter_Func = require('../config/filter_Func')
-var auto_updateStatusOrder = require('../config/auto_updateStatusOrder')
+var updSttAuto = require('../config/updSttAuto')
 var User = require('../models/user')
 
 
